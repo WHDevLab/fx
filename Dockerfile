@@ -6,5 +6,5 @@ COPY . /home/fx
 
 RUN npm install express serve-favicon
 
-EXPOSE 1377
+EXPOSE 1378
 CMD ["pm2-runtime", "start", "pm2.json"]

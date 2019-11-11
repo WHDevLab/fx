@@ -1,0 +1,73 @@
+.App-Footer{
+  background-color: #2c2c2c;
+  padding-bottom: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.App-Footer .thirdsupport{
+	height: 50px;
+	border-top: 1px solid hsla(0, 0%, 100%, .1);
+	text-align: left;
+	padding: 0 50px;
+	padding-top: 20px;
+
+}
+
+
+.App-Footer .copyright{
+  font-size: 12px;
+  color:white;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.App-Footer .upyunlogo{
+  width: 80px;
+  height: auto;
+}
+
+.App-Footer .follow{
+  color: white;
+  padding: 20px 50px;
+}
+
+.App-Footer .follow ul{
+  list-style:none;
+
+}
+
+.App-Footer .follow ul:after{
+  clear: both;
+  content: '';
+  display: block;
+}
+
+.App-Footer .follow ul li{
+  float: left;
+}
+
+.App-Footer .follow img{
+  width: 150px;
+  height: auto;
+}
+
+.App-Footer  .download{
+  color: white;
+  padding: 20px 50px;
+  border-top: 1px solid hsla(0, 0%, 100%, .1);
+
+}
+
+.App-Footer  .download .section{
+  font-size: 18px;
+}
+
+.App-Footer  .download a{
+  font-size: 15px;
+  padding-left: 20px;
+}
+
+.lan_title{
+  margin-bottom: 8px;
+}

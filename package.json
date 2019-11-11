@@ -3,9 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "antd": "^3.25.0",
+    "dns": "^0.2.2",
+    "express": "4.15.4",
+    "fetch": "^1.1.0",
+    "history": "^4.10.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "4.2.0",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "serve-favicon": "2.4.4",
+    "universal-cookie": "^4.0.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -15,17 +26,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

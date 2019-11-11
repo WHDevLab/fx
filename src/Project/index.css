@@ -1,0 +1,50 @@
+.App-Project {
+	margin: 20px 50px;
+	background-color: #fff;
+	min-height: 100vh;
+}
+
+.App-Project .menu {
+	height: 100%;
+	background-color: #fff;
+	width: 15%;
+	float: left;
+
+}
+
+.App-Project .list{
+	width: 85%;
+	float: left
+}
+
+.App-Project .list .title {
+	font-size: 24px;
+	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	line-height: 30px;
+	margin-bottom: 18px;
+	letter-spacing: 0.015em;
+	margin-left: 20px;
+}
+
+.example {
+  position: absolute;
+  margin: 0 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  margin: 0;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.example .ant-spin{
+	margin-top: 300px;
+}
+
+..example button {
+	margin-left: 20px;
+}
