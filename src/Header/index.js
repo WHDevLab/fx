@@ -19,7 +19,6 @@ class Header extends Component {
   }
   doLogin(){
     if (isLogin()) {
-      alert(1)
       logout()
       this.setState({
       isLogin:false
@@ -46,7 +45,7 @@ class Header extends Component {
           <div className="fr">
             <div className="user-info" onClick={this.doLogin}>
               <span>
-                {this.state.isLogin == false && <a href="http://127.0.0.1:3000?redirectURL=http://127.0.0.1:3001">登录</a>}
+                {this.state.isLogin == false && <a href="http://passport.breaker.club?redirectURL=http://fx.breaker.club">登录</a>}
                 {this.state.isLogin && <a>退出</a>}
               </span>
             </div>
