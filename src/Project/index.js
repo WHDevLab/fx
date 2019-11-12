@@ -65,7 +65,7 @@ class Project extends Component {
 
     var map = {"cer":"/apple/certificates", "pri":"/apple/profiles","dev":"/apple/devices","ide":"/apple/identifiers"}
 
-    fetch("http://127.0.0.1:5000"+map[this.state.current]).then(res => res.json()).then((data) => {
+    fetch("http://api.breaker.club"+map[this.state.current]).then(res => res.json()).then((data) => {
       this.endLoading()
       data = data["data"]
       var list = data['list']
