@@ -1,4 +1,4 @@
-FROM webenv
+FROM base_web
 
 RUN mkdir -p /home/fx
 WORKDIR /home/fx
