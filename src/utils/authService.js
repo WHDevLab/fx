@@ -8,7 +8,7 @@ const cookie = new Cookies()
 // }
 
 export function saveCookie(name,value) {
-  cookie.set(name, value, {path:"/"})
+  cookie.set(name, value, {path:"/", domain:'.breaker.club'})
 }
 
 export function getCookie(name) {
