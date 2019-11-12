@@ -16,7 +16,7 @@ export function getCookie(name) {
 }
 
 export function removeCookie(name) {
-  cookie.remove(name, {path:"/"})
+  cookie.remove(name, {path:"/", domain:'.breaker.club'})
 }
 
 export function isLogin() {
