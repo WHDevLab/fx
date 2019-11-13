@@ -38,9 +38,6 @@ export var columnMap = {
 class Project extends Component {
   constructor(props) {
     super(props)
-
-    this.beginLoading = this.beginLoading.bind(this)
-    this.endLoading = this.endLoading.bind(this)
     this.refresh = this.refresh.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleOk = this.handleOk.bind(this)
@@ -91,7 +88,6 @@ class Project extends Component {
         console.log(data)
       })
     }
-    
 
   }
 
