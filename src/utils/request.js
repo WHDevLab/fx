@@ -1,41 +1,62 @@
 import {createBrowserHistory} from 'history';
 import {fetch as fetchPolyfill} from 'whatwg-fetch';
-
+import {getCookie} from  './authService'
+import {message} from 'antd'
 const hashHistory = createBrowserHistory();
 
-export default function request (method, url, body) {
+export default function request (method, url, params, success, failure) {
   method = method.toUpperCase();
+  var body = undefined
   if (method === 'GET') {
-    // fetch的GET不同意有body，參数仅仅能放在url中
-    body = undefined;
+    if (url.charAt(url.length-1) != "?") {
+      url = url+"?"
+    }
+
+    for (var key in params) {
+      url = url+key+"="+params[key]+"&"
+    }
+    
+    url = url.substring(0, url.length-1)
   } else {
-    body = body && JSON.stringify(body);
+    body = params && JSON.stringify(params);
   }
 
-  return fetch(url, {
-    method,
-    headers: {
+  console.log(url)
+  mobxMap["app"].showLoading()
+  
+  let headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Access-Token': sessionStorage.getItem('access_token') || '' // 从sessionStorage中获取access token
-    },
-    body
-  })
+      'access_token': getCookie('access_token') || '' // 从sessionStorage中获取access token
+  }
+  fetch(url, {
+    method:method,
+    headers: headers,
+    body:body
+  }).then(res => res.json())
     .then((res) => {
-      if (res.status === 401) {
-        hashHistory.push('/login');
-        return Promise.reject('Unauthorized.');
-      } else {
-        const token = res.headers.get('access-token');
-        if (token) {
-          sessionStorage.setItem('access_token', token);
-        }
-        return res.json();
+      mobxMap["app"].hideLoading()
+      var code = res['code']
+      if (code == 200){
+        success(res['data'])
       }
-    });
+      else if (code == 401){
+        alert('登录失效')
+        hashHistory.push('/login');
+      }else{
+        message.error(res['msg'])
+      }
+    }).catch((err) => {
+      mobxMap["app"].hideLoading()
+      console.log(err)
+      if (failure) {
+        failure(err)
+      }
+      
+    })
 }
 
-export const get = url => request('GET', url);
-export const post = (url, body) => request('POST', url, body);
-export const put = (url, body) => request('PUT', url, body);
-export const del = (url, body) => request('DELETE', url, body);
+export const GET = (url, params, success, failure) => request('GET', url, params, success, failure);
+export const POST = (url, params, success, failure) => request('POST', url, params, success, failure);
+
+export var mobxMap = {"cc":"11"}

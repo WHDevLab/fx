@@ -17,10 +17,10 @@ const routes = [
       component: Console,
       requiresAuth:true,
     },
-    { path: '/project',
+    { path: '/project/:appkey',
       component: Project,
     },
-    { path: '/createProject',
+    { path: '/project/create',
       component: CreateProject,
     },
     {

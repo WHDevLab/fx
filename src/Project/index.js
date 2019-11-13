@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import request, {get} from '../utils/request';
+import request, {GET, POST} from '../utils/request';
 import './index.css'
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
-import { Button,Menu, Table, Spin, Icon, Modal, Form, Input} from 'antd';
+import { Button,Menu, Table, Icon, Modal, Form, Input} from 'antd';
 export var columnMap = {
       "pri": [
         {"title":"NAME","dataIndex":"name","key":"name",},
@@ -50,7 +50,6 @@ class Project extends Component {
       columns:[],
       data:[],
       title:"None",
-      isloading:false,
       current:"cer",
       visible:false,
     }
@@ -61,17 +60,13 @@ class Project extends Component {
   }
 
   refresh(){
-    this.beginLoading()
-
     var map = {"cer":"/apple/certificates", "pri":"/apple/profiles","dev":"/apple/devices","ide":"/apple/identifiers"}
 
-    fetch("http://api.breaker.club"+map[this.state.current]).then(res => res.json()).then((data) => {
-      this.endLoading()
-      data = data["data"]
-      var list = data['list']
+    var url = "http://api.breaker.club"+map[this.state.current]
+    GET(url, {"appkey":this.props.match.params.appkey},(res)=> {
       this.setState({
-        list:list,
-        title:data["title"]
+        list:res['list'],
+        title:res["title"]
       })
     })
   }
@@ -87,28 +82,12 @@ class Project extends Component {
     })
   };
 
-  beginLoading(){
-    this.setState({
-        isloading:true,
-      })
-  }
-
-  endLoading(){
-    this.setState({
-        isloading:false,
-      })
-  }
-
   handleOk(){
     if (this.state.current == "dev") {
-      this.beginLoading()
       let name = this.refs.name.state.value
       let udid = this.refs.udid.state.value
-      fetch("http://127.0.0.1:5000/apple/registerDevice", {
-        method:"POST",
-        body:JSON.stringify({"name":name, "udid":udid})
-      }).then(res => res.json()).then((data) => {
-        this.endLoading()
+
+      POST("http://api.breaker.club/apple/registerDevice", {"name":name, "udid":udid}, (data)=> {
         console.log(data)
       })
     }
@@ -143,10 +122,6 @@ class Project extends Component {
           <div className="title">{this.state.title}<Button onClick={this.handleAdd}><Icon type="plus" /></Button></div>
           <Table columns={columns} dataSource={this.state.list} />
         </div>
-
-        {this.state.isloading==true && <div className="example">
-          <Spin size="large"/>
-        </div>}
 
         {this.state.current == "dev" && <Modal
           title="新增设备ID"
