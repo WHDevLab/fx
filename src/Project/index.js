@@ -59,8 +59,7 @@ class Project extends Component {
   refresh(){
     var map = {"cer":"/apple/certificates", "pri":"/apple/profiles","dev":"/apple/devices","ide":"/apple/identifiers"}
 
-    var url = "http://api.breaker.club"+map[this.state.current]
-    GET(url, {"appkey":this.props.match.params.appkey},(res)=> {
+    GET(map[this.state.current], {"appkey":this.props.match.params.appkey},(res)=> {
       this.setState({
         list:res['list'],
         title:res["title"]
@@ -84,7 +83,7 @@ class Project extends Component {
       let name = this.refs.name.state.value
       let udid = this.refs.udid.state.value
 
-      POST("http://api.breaker.club/apple/registerDevice", {"name":name, "udid":udid}, (data)=> {
+      POST("/apple/registerDevice", {"name":name, "udid":udid}, (data)=> {
         console.log(data)
       })
     }

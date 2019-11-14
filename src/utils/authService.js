@@ -1,14 +1,15 @@
-
+import {CookieDomain} from './config'
 import Cookies from 'universal-cookie'
 const cookie = new Cookies()
 
-// let cookieConfig = {}
-// if(CookieDomain !== ''){
-//   cookieConfig = { domain: CookieDomain }
-// }
+
+let cookieConfig = {}
+if(CookieDomain !== ''){
+  cookieConfig = { domain: CookieDomain }
+}
 
 export function saveCookie(name,value) {
-  cookie.set(name, value, {path:"/", domain:'.breaker.club'})
+  cookie.set(name, value, cookieConfig)
 }
 
 export function getCookie(name) {
@@ -16,11 +17,15 @@ export function getCookie(name) {
 }
 
 export function removeCookie(name) {
-  cookie.remove(name, {path:"/", domain:'.breaker.club'})
+  cookie.remove(name, cookieConfig)
 }
 
 export function isLogin() {
   return !!getCookie('access_token')
+}
+
+export function userProfile() {
+  return getCookie('profile')
 }
 
 export function logout(){

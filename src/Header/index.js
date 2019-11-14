@@ -1,29 +1,33 @@
 import React, { Component } from 'react'
 import './index.css'
 import { Menu, Icon } from 'antd';
-import {isLogin, logout} from '../utils/authService'
+import {isLogin, logout, userProfile} from '../utils/authService'
+import {POST} from '../utils/request'
+
 class Header extends Component {
   constructor(props){
     super(props)
     this.onConsole = this.onConsole.bind(this)
+    this.logout = this.logout.bind(this)
     this.doLogin = this.doLogin.bind(this)
 
     this.state = {
-      "isLogin":false
+      "isLogin":isLogin()
     }
   }
   componentDidMount(){
-    this.setState({
-      isLogin:isLogin()
+
+  }
+  logout(){
+    POST('/account/logout', {}, ()=>{
+      window.location.reload()
     })
   }
+
   doLogin(){
-    if (isLogin()) {
-      logout()
-      this.setState({
-      isLogin:false
+    POST('/account/login', {}, ()=>{
+      
     })
-    }
   }
   onConsole(){
     this.props.history.push("/console")
@@ -43,12 +47,16 @@ class Header extends Component {
           </ul>
           
           <div className="fr">
-            <div className="user-info" onClick={this.doLogin}>
+            {this.state.isLogin == false && <div className="user-info" onClick={this.doLogin}>
               <span>
-                {this.state.isLogin == false && <a href="http://passport.breaker.club?redirectURL=http://fx.breaker.club">登录</a>}
-                {this.state.isLogin && <a>退出</a>}
+              <a>登录</a>
               </span>
-            </div>
+            </div>}
+            {this.state.isLogin && <div className="user-info" onClick={this.logout}>
+              <span>
+                <a>退出</a>
+              </span>
+            </div>}
           </div>
         </div>
       </div>

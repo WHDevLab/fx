@@ -16,7 +16,7 @@ class Console extends Component {
   }
   componentDidMount(){
     var self = this
-    GET("http://api.breaker.club/project/list", {},(res)=> {
+    GET("/project/list", {},(res)=> {
       self.setState({
         "list":res['list']
       })
@@ -31,9 +31,7 @@ class Console extends Component {
   }
 
   onTest(){
-    GET("http://api.breaker.club/test", {},(res)=> {
-      
-    })
+    
   }
 
   render() {

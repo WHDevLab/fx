@@ -2,7 +2,9 @@ import {createBrowserHistory} from 'history';
 import {fetch as fetchPolyfill} from 'whatwg-fetch';
 import {getCookie} from  './authService'
 import {message} from 'antd'
+import {API_ROOT} from './config'
 const hashHistory = createBrowserHistory();
+
 
 export default function request (method, url, params, success, failure) {
   method = method.toUpperCase();
@@ -29,7 +31,7 @@ export default function request (method, url, params, success, failure) {
       'Accept': 'application/json',
       'access_token': getCookie('access_token') || '' // 从sessionStorage中获取access token
   }
-  fetch(url, {
+  fetch(API_ROOT+url, {
     method:method,
     headers: headers,
     body:body,
