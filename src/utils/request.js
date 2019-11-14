@@ -32,9 +32,13 @@ export default function request (method, url, params, success, failure) {
   fetch(url, {
     method:method,
     headers: headers,
-    body:body
-  }).then(res => res.json())
+    body:body,
+    redirect:'follow',
+  }).then((res) => {
+    return res.json()
+  })
     .then((res) => {
+      console.log(res)
       mobxMap["app"].hideLoading()
       var code = res['code']
       if (code == 200){

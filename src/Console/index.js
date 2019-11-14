@@ -8,7 +8,7 @@ class Console extends Component {
     super(props)
     this.gotoProject = this.gotoProject.bind(this)
     this.createProject = this.createProject.bind(this)
-
+    this.onTest = this.onTest.bind(this)
     this.state = {
       "list":[]
     }
@@ -28,6 +28,12 @@ class Console extends Component {
   }
   gotoProject(appkey){
     this.props.history.push("/project/"+appkey)
+  }
+
+  onTest(){
+    GET("http://api.breaker.club/test", {},(res)=> {
+      
+    })
   }
 
   render() {
