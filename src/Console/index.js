@@ -31,7 +31,9 @@ class Console extends Component {
   }
 
   onTest(){
-    
+    GET("/test", {},(res)=> {
+      
+    })
   }
 
   render() {
