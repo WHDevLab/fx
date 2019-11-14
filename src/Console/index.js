@@ -3,6 +3,7 @@ import './index.css'
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
 import { Button } from 'antd';
 import {GET} from '../utils/request'
+import {logout} from '../utils/authService'
 class Console extends Component {
   constructor(props) {
     super(props)
@@ -32,7 +33,7 @@ class Console extends Component {
 
   onTest(){
     GET("/test", {},(res)=> {
-      
+      logout()
     })
   }
 
