@@ -22,7 +22,7 @@ export default function request (method, url, params, success, failure) {
   } else {
     body = params && JSON.stringify(params);
   }
-
+  
   console.log(url)
   mobxMap["app"].showLoading()
   
@@ -49,7 +49,11 @@ export default function request (method, url, params, success, failure) {
       else if (code == 401){
         alert('登录失效')
         hashHistory.push('/login');
-      }else{
+      }
+      else if (code == 307) {
+        window.location.href = res['data']['location']
+      }
+      else{
         message.error(res['msg'])
       }
     }).catch((err) => {
