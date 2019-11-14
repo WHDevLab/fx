@@ -51,7 +51,7 @@ class Console extends Component {
                 <div>appKey: <span className="appkey">{item["appkey"]}</span></div>
               </div>
               <div className="action">
-                <Button>详情</Button>
+                <Button onClick={this.onTest}>详情</Button>
                 <Button onClick={this.gotoProject.bind(this, item["appkey"])}>证书管理</Button>
               </div>
               </li>)
