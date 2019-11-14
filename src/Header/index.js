@@ -19,7 +19,6 @@ class Header extends Component {
 
   }
   logout(){
-    window.location.href = "http://passport.breaker.club/logout"
     POST('/open/logout', {"href":window.location.href}, ()=>{
       window.location.reload()
     })
