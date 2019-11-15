@@ -19,13 +19,13 @@ class Header extends Component {
 
   }
   logout(){
-    POST('/open/logout', {"href":window.location.href}, ()=>{
-      window.location.reload()
+    POST('/open/logout', {}, ()=>{
+      logout()
     })
   }
 
   doLogin(){
-    POST('/open/login', {"href":window.location.href}, (res)=>{
+    POST('/open/login', {}, (res)=>{
       
     })
   }

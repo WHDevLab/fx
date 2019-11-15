@@ -2,11 +2,8 @@ import {CookieDomain} from './config'
 import Cookies from 'universal-cookie'
 const cookie = new Cookies()
 
-
 let cookieConfig = {}
-if(CookieDomain !== ''){
-  cookieConfig = { domain: CookieDomain }
-}
+cookieConfig = { domain: CookieDomain }
 
 export function saveCookie(name,value) {
   cookie.set(name, value, cookieConfig)

@@ -47,11 +47,11 @@ export default function request (method, url, params, success, failure) {
         success(res['data'])
       }
       else if (code == 401){
-        alert('登录失效')
-        hashHistory.push('/login');
+        window.location.href = "http://passport.breaker.club/login?redirectUrl="+document.location.href
       }
       else if (code == 307) {
         window.location.href = res['data']['location']
+        success(res['data'])
       }
       else{
         message.error(res['msg'])
