@@ -1,5 +1,8 @@
 {
-  "main.css": "static/css/main.56185e89.css",
-  "main.js": "static/js/main.1887545c.js",
-  "static/media/bannerbg.png": "static/media/bannerbg.e5b38013.png"
+  "antd.js": "static/js/antd.c1475bcd.js",
+  "common.js": "static/js/common.0e6dec6c.js",
+  "main.css": "static/css/main.41b0199f.css",
+  "main.js": "static/js/main.d080bc1f.js",
+  "static/media/bannerbg.png": "static/media/bannerbg.e5b38013.png",
+  "vender.js": "static/js/vender.90aecbf9.js"
 }

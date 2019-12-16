@@ -56,7 +56,21 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: {
+	  main: paths.appIndexJs,
+	  common: require.resolve("./polyfills"),
+	  vender: ["react", "react-dom", "react-router"],
+	  antd: [
+		  "antd/lib/button",
+		  "antd/lib/input",
+		  "antd/lib/message",
+		  "antd/lib/icon",
+		  "antd/lib/menu",
+		  "antd/lib/table",
+		  "antd/lib/form",
+		  "antd/lib/modal"
+	  ]
+  },
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -101,11 +115,7 @@ module.exports = {
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
-	  new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
-	  new webpack.optimize.CommonsChunkPlugin({
-		  names:['antd'],
-		  minChunks:Infinity
-	  })
+	  new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
     ],
   },
   module: {
@@ -155,7 +165,7 @@ module.exports = {
             options: {
               compact: true,
               plugins: [
-                ["import", { libraryName: "antd", style: "css" }] // `style: true` 会加载 less 文件
+                ["import", { libraryName: "antd", style: "css" }]
               ]
             },
           },
@@ -334,7 +344,11 @@ module.exports = {
     // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+	new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+	new webpack.optimize.CommonsChunkPlugin({
+		names: ["antd", "vender"], // 抽取出的模块的模块名
+		minChunks: Infinity
+	}),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
@@ -344,5 +358,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
-  },
+  }
 };

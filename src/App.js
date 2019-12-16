@@ -4,19 +4,22 @@ import './App.css'
 import Header from './Header'
 import Footer from './Footer'
 import {Spin} from 'antd'
-import {isLogin} from './utils/authService'
+import {isLogin, saveCookie} from './utils/authService'
 import {mobxMap} from './utils/request'
+import {getValueForKey} from './utils/tool'
 class App extends Component {
   constructor(props){
     super(props)
     mobxMap["app"] = this
     this.showLoading = this.showLoading.bind(this)
     this.hideLoading = this.hideLoading.bind(this)
-    console.log(props)
+    
     this.state = {
       "loading":false
     }
 
+	let value = getValueForKey(this.props, "access_token")
+	saveCookie("access_token", value)
   }
 
   componentDidMount(){

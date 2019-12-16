@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './index.css'
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
-import { Button } from 'antd';
+import { Button } from 'antd/lib/button';
 import {GET} from '../utils/request'
 import {logout} from '../utils/authService'
 class Console extends Component {
@@ -13,7 +13,6 @@ class Console extends Component {
     this.state = {
       "list":[]
     }
-    
   }
   componentDidMount(){
     var self = this
@@ -37,8 +36,15 @@ class Console extends Component {
     })
   }
 
+  onBuild(item) {
+	  alert(1)
+	var appkey = item["appkey"]
+	GET("/project/build?appkey="+appkey, {},(res)=> {
+		
+	})
+  }
+
   render() {
-    console.log(this.state.list)
     return (
       <div className='App-Console'>
         <ul>
@@ -54,6 +60,7 @@ class Console extends Component {
               <div className="action">
                 <Button onClick={this.onTest}>详情</Button>
                 <Button onClick={this.gotoProject.bind(this, item["appkey"])}>证书管理</Button>
+				<Button onClick={this.onBuild.bind(this, item)}>打包</Button>
               </div>
               </li>)
             })

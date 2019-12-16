@@ -1,7 +1,7 @@
 import {createBrowserHistory} from 'history';
 import {fetch as fetchPolyfill} from 'whatwg-fetch';
 import {getCookie} from  './authService'
-import {message} from 'antd'
+import {message} from 'antd/lib/message'
 import {API_ROOT} from './config'
 const hashHistory = createBrowserHistory();
 
