@@ -54,11 +54,15 @@ export default function request (method, url, params, success, failure) {
         success(res['data'])
       }
       else{
-        message.error(res['msg'])
+		console.log(res["msg"])
+		if (failure) {
+			console.log(res)
+			failure(res)
+		}
       }
     }).catch((err) => {
       mobxMap["app"].hideLoading()
-      console.log(err)
+    //   console.log(err)
       if (failure) {
         failure(err)
       }

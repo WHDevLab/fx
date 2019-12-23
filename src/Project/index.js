@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import request, {GET, POST} from '../utils/request';
 import './index.css'
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
-import {Button, Menu, Modal, Input, Icon, Table} from 'antd'
+import {Button, Menu, Modal, Input, Icon, Table, message} from 'antd'
 import {Base64}  from 'js-base64';
 class Project extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Project extends Component {
       columns:[],
       data:[],
       title:"None",
-      current:"pri",
+      current:"dev",
       visible:false,
 	}
 
@@ -110,9 +110,19 @@ class Project extends Component {
       let name = this.refs.name.state.value
       let udid = this.refs.udid.state.value
 
-      POST("/apple/registerDevice", {"name":name, "udid":udid}, (data)=> {
-        console.log(data)
-      })
+      POST("/apple/registerDevice", {"name":name, "udid":udid, "appkey":this.props.match.params.appkey}, (data)=> {
+		this.setState({visible:false})
+		// if (code == "200") {
+		// 	message.info('注册成功')
+		// }else{
+		// 	alert(1)
+		// 	message.info(msg)
+		// }
+      }, (err)=>{
+		this.setState({visible:false})
+		console.log(err)
+		message.error(err["msg"])
+	  })
     }
 
   }
