@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import request, {GET, POST} from '../utils/request';
 import './index.css'
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
-import {Button, Menu, Modal, Form, Input, Icon, Table, Divider} from 'antd'
+import {Button, Menu, Modal, Input, Icon, Table} from 'antd'
 import {Base64}  from 'js-base64';
 class Project extends Component {
   constructor(props) {
@@ -69,18 +69,10 @@ class Project extends Component {
   }
 
   downloadAction(item) {
-// 	let profileContent = item["profileContent"]
-// 	let name = item["name"]
-// 	var b64Data=Base64.decode(profileContent)
-// 	const blob = b64toBlob(b64Data, 'application/octet-stream');
-// 	const u = window.URL.createObjectURL(blob)
-// 	let a = document.createElement('a') // 动态创建a链接
-//  　  document.body.appendChild(a)
-//      a.href = u
-//     let setDownloadName = name+'.mobileprovision' // 默认下载的文件名
-//     a.download = setDownloadName
-//     a.click()
-//     window.URL.revokeObjectURL(u) // 移除动态创建的a链接
+	let href = item["download"]
+	let a = document.createElement('a') // 动态创建a链接
+	a.href = href
+	a.click()
   }
 
    b64toBlob = (b64Data, contentType='', sliceSize=512) => {
