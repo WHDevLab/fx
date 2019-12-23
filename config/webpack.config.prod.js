@@ -61,14 +61,13 @@ module.exports = {
 	  common: require.resolve("./polyfills"),
 	  vender: ["react", "react-dom", "react-router"],
 	  antd: [
-		  "antd/lib/button",
-		  "antd/lib/input",
-		  "antd/lib/message",
-		  "antd/lib/icon",
-		  "antd/lib/menu",
-		  "antd/lib/table",
-		  "antd/lib/form",
-		  "antd/lib/modal"
+		"antd/lib/button",
+		"antd/lib/input",
+		"antd/lib/message",
+		"antd/lib/icon",
+		"antd/lib/menu",
+		"antd/lib/table",
+		"antd/lib/modal"
 	  ]
   },
   output: {
