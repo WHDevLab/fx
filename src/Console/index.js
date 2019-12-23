@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './index.css'
 import {fetch as fetchPolyfill} from 'whatwg-fetch'
-import { Button } from 'antd/lib/button';
+import { Button } from 'antd';
 import {GET} from '../utils/request'
 import {logout} from '../utils/authService'
 class Console extends Component {
@@ -37,11 +37,11 @@ class Console extends Component {
   }
 
   onBuild(item) {
-	  alert(1)
-	var appkey = item["appkey"]
-	GET("/project/build?appkey="+appkey, {},(res)=> {
+	//   alert(1)
+	// var appkey = item["appkey"]
+	// GET("/project/build?appkey="+appkey, {},(res)=> {
 		
-	})
+	// })
   }
 
   render() {

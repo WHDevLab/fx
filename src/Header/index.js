@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './index.css'
-import { Menu, Icon } from 'antd';
 import {isLogin, logout, userProfile} from '../utils/authService'
 import {POST} from '../utils/request'
 
