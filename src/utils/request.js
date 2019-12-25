@@ -47,7 +47,7 @@ export default function request (method, url, params, success, failure) {
         success(res['data'])
       }
       else if (code == 401){
-        window.location.href = "http://passport.breaker.club/login?redirectUrl="+document.location.href
+        window.location.href = "http://passport.breaker.club/login?redirectURL="+document.location.href
       }
       else if (code == 307) {
         window.location.href = res['data']['location']

@@ -18,15 +18,11 @@ class Header extends Component {
 
   }
   logout(){
-    POST('/open/logout', {}, ()=>{
-      logout()
-    })
+    window.location.href = "http://passport.breaker.club/logout?redirectURL="+document.location.href
   }
 
   doLogin(){
-    POST('/open/login', {}, (res)=>{
-      
-    })
+    window.location.href = "http://passport.breaker.club/login?redirectURL="+document.location.href
   }
   onConsole(){
     this.props.history.push("/console")
@@ -48,7 +44,7 @@ class Header extends Component {
           <div className="fr">
             {this.state.isLogin == false && <div className="user-info" onClick={this.doLogin}>
               <span>
-              <a>登录</a>
+              <a onClick={this.doLogin}>登录</a>
               </span>
             </div>}
             {this.state.isLogin && <div className="user-info" onClick={this.logout}>

@@ -17,9 +17,6 @@ class App extends Component {
     this.state = {
       "loading":false
     }
-
-	let value = getValueForKey(this.props, "access_token")
-	saveCookie("access_token", value)
   }
 
   componentDidMount(){
@@ -38,7 +35,7 @@ class App extends Component {
     let matchResult = matchRoutes(this.props.route.routes, window.location.pathname)[0]
     if (matchResult.route.requiresAuth == true) {
       if (isLogin() == false) {
-        window.location.href = "http://passport.breaker.club/login?redirectUrl="+document.location.href
+        window.location.href = "http://passport.breaker.club/login?redirectURL="+document.location.href
         return (<div></div>)
       }
     }
