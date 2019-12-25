@@ -18,7 +18,14 @@ export function removeCookie(name) {
 }
 
 export function isLogin() {
-  return !!getCookie('access_token')
+	let access_token = getCookie('access_token')
+	if (access_token == null) {
+		return false
+	}
+	if (String(access_token).length > 0) {
+		return true
+	}
+	return false
 }
 
 export function userProfile() {

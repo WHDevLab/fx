@@ -42,14 +42,14 @@ class Header extends Component {
           </ul>
           
           <div className="fr">
-            {this.state.isLogin == false && <div className="user-info" onClick={this.doLogin}>
+            {this.state.isLogin == false && <div className="user-info">
               <span>
               <a onClick={this.doLogin}>登录</a>
               </span>
             </div>}
             {this.state.isLogin && <div className="user-info" onClick={this.logout}>
               <span>
-                <a>退出</a>
+                <a onClick={this.logout}>退出</a>
               </span>
             </div>}
           </div>
